@@ -103,6 +103,9 @@ if __name__ == "__main__":
         elif 'open code' in query:
             codePath = "C:\\Users\Arjun narayann\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
             os.startfile(codePath)
+        elif "open firefox" in query:
+            firefox = "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
+            os.startfile(firefox)
 
         elif 'email to aman' in query:
             try:
