@@ -83,6 +83,9 @@ if __name__ == "__main__":
 
         elif 'open stackoverflow' in query:
             webbrowser.open("stackoverflow.com")   
+        elif 'open word' in query:
+            wordpath = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\Word.lnk"  
+            os.startfile(wordpath)
 
 
         elif 'play music' in query:
