@@ -11,7 +11,7 @@ import random
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 # print(voices[1].id)
-engine.setProperty('voice', voices[1].id)
+engine.setProperty('voice', voices[0].id)
 
 
 def speak(audio):
@@ -36,11 +36,13 @@ def takeCommand():
     #It takes microphone input from the user and returns string output
 
     r = sr.Recognizer()
+    r.adjust_for_ambient_noise(source)
     with sr.Microphone() as source:
         print("Listening...")
-        r.pause_threshold = 1
+        r.pause_threshold = 2
     
-        audio = r.listen(source)
+        audio = r.listen(source, timeout=15)
+
 
     try:
         print("Recognizing...")    
@@ -57,7 +59,7 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('aman135kumar@gmail.com', 'chaman123@')
+    server.login('aman135kumar@gmail.com', 'vhin xztm rbcs oemq')
     server.sendmail('aman135kumar@gmail.com', to, content)
     server.close()
 
@@ -107,11 +109,12 @@ if __name__ == "__main__":
             firefox = "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
             os.startfile(firefox)
 
-        elif 'email to aman' in query:
+        elif 'email' in query:
             try:
+                speak("Who should I send the email to?")
                 speak("What should I say?")
                 content = takeCommand()
-                to = "amankumar13092pms@gmail.com"    
+                to =  takeCommand().lower()
                 sendEmail(to, content)
                 speak("Email has been sent!")
             except Exception as e:
@@ -121,7 +124,7 @@ if __name__ == "__main__":
             print("I am soni programmed by aman on 10 january 2023. I am designed to assist you and automate tasks ")
             speak("I am soni programmed by aman on 10 january 2023. I am designed to assist you and automate tasks ")
 
-        elif "exit" in query:
+        elif "exit" or "quit" in query:
             break
         elif ("laugh" or "jokes") in query:
             print("how do you get a squirrel to like you?\n","Act like a 'nut'")
